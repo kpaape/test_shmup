@@ -1,0 +1,14 @@
+body {
+    margin-top: 100px;
+}
+
+#canvas_container {
+    width: 800px;
+    margin: 0 auto;
+}
+
+#scoreboard {
+    width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
