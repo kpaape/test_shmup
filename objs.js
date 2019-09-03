@@ -76,7 +76,6 @@ class Bullet extends Obj {
         let that = this;
         super.collide(function(hit) {
             if(!hit.shield) {
-                console.log("Hit " + hit.name + " for " + that.damage + " damage");
                 hit.hp -= that.damage;
                 hit.checkDeath(that.owner);
                 if(!that.pierce) {

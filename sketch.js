@@ -13,7 +13,6 @@ let testImg;
 
 // load any images that will be used
 function preload() {
-    // testImg = loadImage("images/test.png");
 }
 
 // This is where all of the code related to starting the sketch should go
@@ -22,9 +21,6 @@ function setup() {
     gameCanvas.parent(document.getElementById("canvas_container"));
     player = new Player("Player", "white", [width/4, height/2], 5);
     mobs.push(player);
-    // let power = new Weapon("laserphaser7blast");
-    // power.loc = [width, height/2];
-    // objs.push(power);
     updateScore()
     startLevel();
 }
@@ -32,8 +28,6 @@ function setup() {
 // This code will be continuously repeated. This is where all of the rendering should go.
 function draw() {
     background(50);
-    // imageMode(CENTER);
-    // image(testImg, width/2, height/2);
     for(var i = objs.length-1; i >= 0; i--) {
         if(objs[i].toDelete) {
             if(objs[i].movement) {
@@ -128,9 +122,6 @@ function updateDir(keyCode, held = false) {
 function startLevel() {
     if(!player) { return }
     console.log("Level: " + level);
-    console.log(player.weapon);
-    player.weapon.replace("phaser", "");
-    console.log(player.weapon);
     wave = level*2;
     spawnWave();
 }
@@ -166,6 +157,7 @@ function spawnWave() {
 
 function spawnPowerup() {
     let powerUp = generatePower();
+    player.weapon = player.weapon.replace("phaser", "").replace("+", "").replace(/[0-9]/g, "");
     if(powerUp == "shield") {
         powerUp = new Shield(powerUp);
     } else {

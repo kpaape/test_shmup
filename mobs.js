@@ -8,7 +8,6 @@ class Mob extends Obj {
     }
     checkDeath(killer) {
         if(this.hp <= 0) {
-            console.log(this.name + " was killed by " + killer.name);
             if(killer == player) {
                 score += 1+level;
                 updateScore();
@@ -21,7 +20,12 @@ class Mob extends Obj {
         let that = this;
         super.collide(function(collide) {
             if(that == player || collide == player) {
-                player.toDelete = true;
+                if(player.shield) {
+                    player.shield.toDelete = true;
+                    player.shield = null;
+                } else {
+                    player.toDelete = true;
+                }
             }
         });
     }
